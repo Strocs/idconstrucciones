@@ -1,0 +1,38 @@
+---
+import Logo from "@/components/icons/Logo.astro";
+import heroImage from "@/assets/obra-main.jpg";
+import { Image } from "astro:assets";
+import Title from "@/components/Title.astro";
+---
+
+<section class="pb-4 md:pb-10 opacity-0">
+  <Title class="font-black text-center"> ID Construcciones </Title>
+  <p
+    class="text-center leading-none text-lg md:text-xl mb-4 text-blue-900 uppercase"
+  >
+    Lorem ipsum dolor sit amet consectetur adipisicing elit.
+  </p>
+  <figure>
+    <div class="relative mb-4">
+      <Image
+        alt=""
+        class="w-full object-cover rounded-3xl md:h-[30rem]"
+        src={heroImage}
+      />
+      <!-- <Image
+        alt=""
+        class="absolute right-0 bottom-0 z-10 rounded-br-[3rem] md:rounded-br-[10rem]"
+        src={heroImage}
+      /> -->
+      <!-- <img
+        class="border-zinc-950 absolute w-[5rem] right-[20%] bottom-0 translate-y-1/2 z-20 border-[8px] rounded-full md:w-[8rem]"
+        src="images/another/pin.png"
+      /> -->
+      <!-- <div
+        class="absolute z-20 w-32 h-32 bottom-[10%] right-[6%] border-neutral-50 border-8 bg-neutral-50 rounded-full"
+      >
+        <Logo />
+      </div> -->
+    </div>
+  </figure>
+</section>

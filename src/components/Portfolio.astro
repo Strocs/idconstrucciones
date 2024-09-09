@@ -1,0 +1,55 @@
+---
+import Title from "@/components/Title.astro";
+import PortfolioCard from "./PortfolioCard.astro";
+import rocas from "@/assets/obra-1b.jpeg";
+import santoTomas from "@/assets/obra-santo-tomas.jpg";
+import cortinas from "@/assets/obra-2.jpg";
+import Obra5 from "@/assets/obra-3.jpg";
+---
+
+<section id="proyectos" class="py-4 md:py-10 uppercase opacity-0">
+  <Title h="h2" class="font-bold">Proyectos</Title>
+  <div class="grid gap-8 mb-8 md:grid-cols-2">
+    <p class="text-sm opacity-50">
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur,
+      odio.
+    </p>
+    <!-- <aside class="flex flex-wrap gap-4 text-sm md:justify-items-end">
+      <CheapButton> business </CheapButton>
+      <CheapButton> residential </CheapButton>
+      <CheapButton> hospitality </CheapButton>
+    </aside> -->
+  </div>
+  <div
+    class="h-[40rem] grid gap-4 md:h-[30rem] md:grid-cols-2 lg:grid-cols-4 lg:grid-rows-2 [&>*]:overflow-hidden"
+  >
+    <div class="w-full h-full lg:col-span-2">
+      <PortfolioCard
+        src={santoTomas}
+        alt="some building"
+        title="Auditorio Universidad Santo Tomás"
+      />
+    </div>
+    <div class="w-full h-full lg:row-span-2">
+      <PortfolioCard
+        src={Obra5}
+        alt="some building"
+        title="Nombre del Proyecto"
+      />
+    </div>
+    <div class="w-full h-full lg:row-span-2">
+      <PortfolioCard
+        src={cortinas}
+        alt="some building"
+        title="Cortinas Bonitas"
+      />
+    </div>
+    <div class="w-full h-full lg:col-span-2">
+      <PortfolioCard
+        src={rocas}
+        alt="some building"
+        title="Casita en las Rocas"
+      />
+    </div>
+  </div>
+</section>

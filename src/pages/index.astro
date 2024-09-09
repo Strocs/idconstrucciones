@@ -1,0 +1,53 @@
+---
+import About from "@/components/About.astro";
+import Contact from "@/components/Contact.astro";
+import Footer from "@/components/Footer.astro";
+import Header from "@/components/Header.astro";
+import Hero from "@/components/Hero.astro";
+import WhatsApp from "@/components/icons/WhatsApp.astro";
+import Portfolio from "@/components/Portfolio.astro";
+import Summary from "@/components/Summary.astro";
+import Team from "@/components/Team.astro";
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="ID Construcciones">
+  <a
+    href="#"
+    class="fixed z-10 hover:animate-pulsing animate-duration-100 bottom-4 md:bottom-6 right-4 md:right-6 text-green-500 bg-white rounded-full"
+  >
+    <WhatsApp size="70" />
+  </a>
+  <Header />
+  <main class="max-w-[1000px] mx-auto px-4">
+    <Hero />
+    <Summary />
+    <Portfolio />
+    <About />
+    <Team />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>
+
+<script>
+  const sections = document.querySelectorAll("section");
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-fade-in-right");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.1,
+    }
+  );
+
+  sections.forEach((el) => {
+    observer.observe(el);
+  });
+</script>

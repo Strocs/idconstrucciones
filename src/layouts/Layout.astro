@@ -1,0 +1,38 @@
+---
+import "@fontsource/poppins/100.css";
+import "@fontsource/poppins/200.css";
+import "@fontsource/poppins/300.css";
+import "@fontsource/poppins/400.css";
+import "@fontsource/poppins/500.css";
+import "@fontsource/poppins/600.css";
+import "@fontsource/poppins/700.css";
+import "@fontsource/poppins/800.css";
+import "@fontsource/poppins/900.css";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "ID Construcciones" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  </head>
+  <body
+    class="relative min-h-[dvh] h-full w-full text-zinc-950 font-sans scroll-smooth"
+  >
+    <div
+      class="fixed inset-0 -z-10 h-full w-full bg-white bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"
+    >
+    </div>
+    <slot />
+  </body>
+</html>
