@@ -1,14 +1,14 @@
 ---
 interface Props {
-  fill?: "white" | "blue";
+  fill?: 'white' | 'blue'
 }
 
-const { fill = "blue" } = Astro.props;
+const { fill = 'blue' } = Astro.props
 
 const variantColor = {
-  white: "fill-blue-200",
-  blue: "fill-blue-900",
-};
+  white: 'fill-white',
+  blue: 'fill-blue-900',
+}
 ---
 
 <svg

@@ -1,24 +1,24 @@
 ---
 interface Props {
-  class?: string;
-  h?: "h1" | "h2" | "h3";
+  class?: string
+  h?: 'h1' | 'h2' | 'h3'
 }
 
 interface Variants {
-  [key: string]: string;
+  [key: string]: string
 }
 
-const { class: customClass, h: Element = "h1", ...props } = Astro.props;
+const { class: customClass, h: Element = 'h1', ...props } = Astro.props
 
 const variantSize: Variants = {
-  h1: "text-4xl md:text-8xl",
-  h2: "text-3xl md:text-6xl",
-};
+  h1: 'text-4xl md:text-6xl lg:text-8xl',
+  h2: 'text-3xl md:text-4xl lg:text-6xl',
+}
 ---
 
 <Element
   class:list={[
-    "text-transparent tracking-tighter uppercase py-2 bg-clip-text bg-gradient-to-r from-blue-900 to-blue-950",
+    'text-transparent tracking-tighter uppercase py-2 bg-clip-text bg-gradient-to-r from-white to-blue-50',
     variantSize[Element],
     customClass,
   ]}

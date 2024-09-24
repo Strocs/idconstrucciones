@@ -1,11 +1,20 @@
 ---
-import ContactInput from "./ContactInput.astro";
-import Title from "@/components/Title.astro";
+import ContactInput from './ContactInput.astro'
+import Title from '@/components/Title.astro'
 ---
 
-<section id="contacto" class="py-4 md:py-10 opacity-0">
-  <Title h="h2" class="font-bold">Contáctanos</Title>
-  <form class="grid gap-4 md:grid-cols-2 md:gap-8">
+<section
+  id="contacto"
+  class="container mx-auto h-[75vh] flex items-center justify-center w-fit opacity-0"
+>
+  <div>
+    <Title h="h2" class="font-bold text-center">Contáctanos</Title>
+    <p class="max-w-sm">
+      ¿Necesitas nuestros servicios? Contáctanos por WhatsApp o llena el
+      formulario
+    </p>
+  </div>
+  <form class="max-w-xl p-8 mx-auto grid gap-4 md:grid-cols-2 md:gap-8">
     <ContactInput id="1" label="Nombre" placeholder="" />
     <ContactInput id="2" label="Compañía" placeholder="" />
     <ContactInput id="2" type="email" label="Email" placeholder="" />
