@@ -1,0 +1,49 @@
+---
+import SITE from '@/data/SITE'
+import WhatsApp from './icons/WhatsApp.astro'
+import Title from './Title.astro'
+import { ContactForm } from './ContactForm'
+---
+
+<section
+  id='contacto'
+  class='container mx-auto py-20 sm:py-40 px-4 sm:px-6 lg:px-8'
+>
+  <div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
+    <!-- Left Section -->
+    <div class='flex flex-col justify-center'>
+      <Title h='h2' class='font-bold'> Estemos en contacto </Title>
+      <p class='text-lg text-slate-300 mb-6'>
+        Estamos aquí para ayudarte con todas sus necesidades en construcción. Ya
+        sea que estés planeando un nuevo proyecto o necesita asesoramiento de
+        expertos, nuestro equipo está listo para ayudarte.
+      </p>
+
+      <a
+        href={`https://wa.me/${SITE.contact.phone.replaceAll(' ', '')}?text=Hola ID Construcciones, `}
+        target='_blank'
+        rel='noopener noreferrer'
+        class='text-green-500 flex items-center gap-4 p-4 rounded-lg group w-fit'
+      >
+        <WhatsApp
+          size='52'
+          class='group-hover:scale-105 transition-transform'
+        />
+        <div>
+          <h3 class='leading-none text-xl font-semibold text-slate-200'>
+            Contacta con nosotros por WhatsApp
+          </h3>
+          <p class='group-hover:underline'>
+            +56 {SITE.contact.phone}
+          </p>
+        </div>
+      </a>
+    </div>
+
+    <!-- Right Section - Form -->
+    <div class='bg-slate-200 p-6 rounded-lg shadow-md'>
+      <h3 class='text-2xl font-bold text-blue-900 mb-6'>Envíanos un mensaje</h3>
+      <ContactForm client:load />
+    </div>
+  </div>
+</section>

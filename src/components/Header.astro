@@ -1,0 +1,51 @@
+---
+import { Image } from 'astro:assets'
+import Hero from './Hero.astro'
+import Logo from './icons/Logo.astro'
+import Nav from './Nav.astro'
+import houseOnStone from '@/assets/obra-1b.png'
+---
+
+<header class='relative h-[80vh] w-full'>
+  <nav
+    id='header-nav'
+    class='px-4 sm:px-8 fixed z-10 top-0 w-full transition-background duration-300'
+  >
+    <div class='container mx-auto py-4 gap-4 flex justify-between items-center'>
+      <a
+        class='shrink-0 block hover:scale-105 transition-transform duration-150'
+        href='/'
+      >
+        <div class='flex h-12 items-center gap-2'>
+          <Logo fill='white' />
+          <span class='text-[3.25rem] mt-2 font-extrabold'>ID</span>
+        </div>
+        <span class='text-sm font-light'>CONSTRUCCIONES</span>
+      </a>
+
+      <Nav />
+    </div>
+  </nav>
+  <Hero />
+
+  <figure
+    class='w-full h-full max-h-[80vh] absolute -z-10 top-0 overflow-hidden'
+  >
+    <Image
+      loading='eager'
+      alt='Vivienda construída por ID Construcciones'
+      class='h-full object-cover'
+      src={houseOnStone}
+      width={1920}
+    />
+  </figure>
+</header>
+
+<script>
+  const nav = document.getElementById('header-nav') as HTMLElement
+
+  window.addEventListener('scroll', () => {
+    const isScrolled = window.scrollY > 100
+    nav.classList.toggle('bg-blue-950', isScrolled)
+  })
+</script>
