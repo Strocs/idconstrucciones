@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from 'react'
 
 interface FormErrors {
-  general: string
   name: string
   email: string
   phone: string
@@ -10,12 +9,11 @@ interface FormErrors {
 
 interface ResponseData {
   success: boolean
-  errors?: Omit<FormErrors, 'general'>
-  message: string
+  formErrors?: FormErrors
+  message: string | null
 }
 
 const initalErrors: FormErrors = {
-  general: '',
   name: '',
   email: '',
   phone: '',
@@ -48,23 +46,16 @@ export const ContactForm = () => {
 
     const data: ResponseData = await response.json()
 
-    if (data.success) {
+    // get validation errors from server
+    if (data.formErrors) {
+      setValidationErrors(data.formErrors)
+    } else {
       setValidationErrors(initalErrors)
-      setSendEmail({
-        isLoading: false,
-        success: true,
-        message: data.message,
-      })
-      return
     }
 
-    setValidationErrors({
-      general: data.message,
-      ...data.errors!,
-    })
     setSendEmail({
       isLoading: false,
-      success: true,
+      success: data.success,
       message: data.message,
     })
   }
@@ -125,7 +116,7 @@ export const ContactForm = () => {
                 name='phone'
                 required
                 className='block w-full border-b-2 border-blue-300 focus:border-blue-500 focus:ring-0 bg-transparent py-2 px-3 text-blue-900 placeholder-blue-400'
-                placeholder='+56 9xxxx xxxx'
+                placeholder='+569xxxxxxxx'
               />
               {validationErrors.phone && (
                 <p className='text-red-500'>{validationErrors.phone}</p>
@@ -150,7 +141,9 @@ export const ContactForm = () => {
               <p className='text-red-500'>{validationErrors.message}</p>
             )}
           </label>
-
+          {!sendEmail.success && sendEmail.message && (
+            <p className='text-red-500 py-4'>{sendEmail.message}</p>
+          )}
           <button
             type='submit'
             className='w-full flex justify-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500'

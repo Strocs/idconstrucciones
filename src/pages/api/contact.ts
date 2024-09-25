@@ -8,21 +8,34 @@ export const POST: APIRoute = async ({ request }) => {
   const phone = data.get('phone')
   const message = data.get('message')
 
+  const isValidName =
+    name &&
+    name.toString().trim().replaceAll(' ', '').length > 0 &&
+    `${name}`.match(/^[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+$/)
+
+  const isValidEmail =
+    email &&
+    `${email}`.match(
+      /^[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+@[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+\.[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+$/
+    )
   const isValidPhone =
     phone && `${phone}`.match(/^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/)
 
-  if (!name || !email || !message || !isValidPhone) {
+  const isValidMessage =
+    message && `${message}`.trim().replaceAll(' ', '').length > 0
+
+  if (!isValidName || !isValidEmail || !isValidMessage || !isValidPhone) {
     return new Response(
       JSON.stringify({
         success: false,
-        message: 'Faltan datos obligatorios',
-        errors: {
-          name: name ? '' : 'Nombre Requerido',
-          email: email ? '' : 'Email Requerido',
+        message: null,
+        formErrors: {
+          name: isValidName ? '' : 'Formato de nombre no válido',
+          email: isValidEmail ? '' : 'Formato de correo no válido',
           phone: isValidPhone
             ? ''
-            : 'No debe contener espacios y puede o no contener el código +56',
-          message: message ? '' : 'Mensaje Requerido',
+            : 'Formato de teléfono no válido. Intenta con el formato +5698765432 o 98765432',
+          message: isValidMessage ? '' : 'El mensaje no puede estar vacío',
         },
       }),
       { status: 400 }
@@ -46,11 +59,13 @@ export const POST: APIRoute = async ({ request }) => {
       }),
     })
 
-    if (!emailResponse.ok) throw new Error('Error al enviar el correo')
+    if (!emailResponse.ok)
+      throw new Error('Error al enviar el correo, intenta de nuevo.')
 
     const { success } = await emailResponse.json()
 
-    if (!success) throw new Error('Error al enviar el correo')
+    if (!success)
+      throw new Error('Error al enviar el correo, intenta de nuevo.')
 
     return new Response(
       JSON.stringify({
