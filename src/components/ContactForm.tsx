@@ -13,6 +13,12 @@ interface ResponseData {
   message: string | null
 }
 
+interface SendEmail {
+  isLoading: boolean
+  success: boolean
+  message: string | null
+}
+
 const initalErrors: FormErrors = {
   name: '',
   email: '',
@@ -22,7 +28,7 @@ const initalErrors: FormErrors = {
 
 export const ContactForm = () => {
   const [validationErrors, setValidationErrors] = useState(initalErrors)
-  const [sendEmail, setSendEmail] = useState({
+  const [sendEmail, setSendEmail] = useState<SendEmail>({
     isLoading: false,
     success: false,
     message: '',
