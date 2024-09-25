@@ -13,4 +13,5 @@ export default {
   semi: false,
   singleQuote: true,
   astroAllowShorthand: true,
+  jsxSingleQuote: true,
 }

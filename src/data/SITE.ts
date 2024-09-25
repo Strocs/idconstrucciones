@@ -42,9 +42,9 @@ export default {
       ],
     },
     contact: {
-      title: 'Contacto',
+      title: 'Estemos en contacto',
       subTitle:
-        'Ponte en contacto con nuestro equipo y te brindaremos la mejor respuesta a tus dudas',
+        'Estamos aquí para ayudarte con todas sus necesidades en construcción. Ya sea que estés planeando un nuevo proyecto o necesita asesoramiento de expertos, nuestro equipo está listo para ayudarte.',
     },
   },
   social_media: {
@@ -52,7 +52,8 @@ export default {
     fb: '',
   },
   contact: {
-    business_email: '',
+    business_email: 'contacto@idconstrucciones.cl',
     admin_email: '',
+    phone: '9 6211 5782',
   },
 }
