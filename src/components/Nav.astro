@@ -7,11 +7,11 @@ interface Props {
   id?: string
 }
 
-const { class: customClass, id } = Astro.props
+const { class: customClass, ...props } = Astro.props
 ---
 
 <div
-  {id}
+  {...props}
   class:list={[
     'flex items-center text-center gap-x-8 justify-center flex-wrap uppercase font-medium',
     customClass,
