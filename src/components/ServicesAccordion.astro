@@ -52,7 +52,9 @@ const { open } = Astro.props
 
 <script>
   const accordion = document.getElementById('acordeon') as HTMLElement
-  const items = accordion.querySelectorAll('li > header')
+  const items = accordion.querySelectorAll(
+    'li > header'
+  ) as NodeListOf<HTMLElement>
   if (!accordion) throw new ReferenceError()
 
   accordion.addEventListener('click', (e) => {
