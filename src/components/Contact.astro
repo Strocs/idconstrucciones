@@ -12,13 +12,10 @@ import { ContactForm } from './ContactForm'
   <div class='grid grid-cols-1 md:grid-cols-2 gap-8'>
     <!-- Left Section -->
     <div class='flex flex-col justify-center'>
-      <Title h='h2' class='font-bold'> Estemos en contacto </Title>
+      <Title h='h2' class='font-bold'>{SITE.sections.contact.title}</Title>
       <p class='text-lg text-slate-300 mb-6'>
-        Estamos aquí para ayudarte con todas sus necesidades en construcción. Ya
-        sea que estés planeando un nuevo proyecto o necesita asesoramiento de
-        expertos, nuestro equipo está listo para ayudarte.
+        {SITE.sections.contact.subTitle}
       </p>
-
       <a
         href={`https://wa.me/${SITE.contact.phone.replaceAll(' ', '')}?text=Hola ID Construcciones, `}
         target='_blank'
@@ -31,10 +28,10 @@ import { ContactForm } from './ContactForm'
         />
         <div>
           <h3 class='leading-none text-xl font-semibold text-slate-200'>
-            Contacta con nosotros por WhatsApp
+            {SITE.sections.contact.whatsAppMessage}
           </h3>
           <p class='group-hover:underline'>
-            +56 {SITE.contact.phone}
+            {SITE.contact.phone}
           </p>
         </div>
       </a>

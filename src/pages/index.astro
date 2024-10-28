@@ -2,13 +2,11 @@
 import Contact from '@/components/Contact.astro'
 import Footer from '@/components/Footer.astro'
 import Header from '@/components/Header.astro'
-import Hero from '@/components/Hero.astro'
-// import Portfolio from '@/components/Portfolio.astro'
-// import About from '@/components/About.astro'
-// import Summary from '@/components/Summary.astro'
-// import Team from '@/components/Team.astro'
+import Services from '@/components/Services.astro'
+import Summary from '@/components/Summary.astro'
 import Layout from '@/layouts/Layout.astro'
 import SITE from '@/data/SITE'
+import About from '@/components/About.astro'
 
 const { title, description } = SITE
 ---
@@ -16,11 +14,13 @@ const { title, description } = SITE
 <Layout {title} {description}>
   <Header />
   <main class='mx-auto space-y-10'>
-    <!-- <Hero /> -->
-    <!-- <Summary /> -->
-    <!-- <Portfolio /> -->
-    <!-- <About /> -->
-    <!-- <Team /> -->
+    <Summary />
+    <div
+      class='bg-blue-50 w-12 h-8 mx-auto [clipPath:polygon(0_0,100%_0,50%_100%)]'
+    >
+    </div>
+    <Services />
+    <About />
     <Contact />
   </main>
   <Footer />

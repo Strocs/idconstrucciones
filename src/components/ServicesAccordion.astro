@@ -1,0 +1,88 @@
+---
+import Arrow from '@/components/icons/Arrow.astro'
+import SITE from '@/data/SITE'
+
+interface Props {
+  open?: number
+}
+const { open } = Astro.props
+---
+
+<div class='w-full'>
+  <ul id='acordeon' class='flex items-center flex-col gap-6'>
+    {
+      SITE.sections.services.content.map((service, i) => (
+        <li class='border-slate-600 border-b-[1px]'>
+          <header
+            class='flex justify-between cursor-pointer [&>*]:pointer-events-none hover:text-blue-200 text-white transition duration-150'
+            data-status={`${i === open ? 'enabled' : 'disabled'}`}
+          >
+            <h3 class='text-lg md:text-xl'>{service.name}</h3>
+            <Arrow
+              class={`w-8 transition-[rotate] ${i === open ? 'rotate-90' : 'rotate-0'}`}
+            />
+          </header>
+          <div
+            class='grid transition-all'
+            style={`${
+              i === open
+                ? 'grid-template-rows: 1fr;'
+                : 'grid-template-rows: 0fr;'
+            }`}
+          >
+            <div class='h-full overflow-hidden normal-case'>
+              {typeof service.description === 'string' ? (
+                <p class='mb-4 pt-2 text-sm text-slate-300 md:text-base'>
+                  {service.description}
+                </p>
+              ) : (
+                service.description.map((description) => (
+                  <p class='mb-4 pt-2 text-sm text-slate-300  md:text-base'>
+                    {description}
+                  </p>
+                ))
+              )}
+            </div>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<script>
+  const accordion = document.getElementById('acordeon') as HTMLElement
+  const items = accordion.querySelectorAll('li > header')
+  if (!accordion) throw new ReferenceError()
+
+  accordion.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement
+    const dataset = { ...target.dataset }
+
+    const content = target.nextElementSibling as HTMLElement
+    const arrow = target.querySelector('svg') as SVGElement
+
+    if (!arrow || !content) throw new ReferenceError()
+
+    switch (dataset.status) {
+      case 'disabled':
+        items.forEach((item) => {
+          const content = item.nextElementSibling as HTMLElement
+          content.style.gridTemplateRows = '0fr'
+          item.dataset.status = 'disabled'
+          item.querySelector('svg')?.classList.remove('rotate-90')
+        })
+        content.style.gridTemplateRows = '1fr'
+        target.dataset.status = 'enabled'
+        arrow.classList.add('rotate-90')
+        break
+      case 'enabled':
+        content.style.gridTemplateRows = '0fr'
+        target.dataset.status = 'disabled'
+        arrow.classList.remove('rotate-90')
+        break
+      default:
+        break
+    }
+  })
+</script>

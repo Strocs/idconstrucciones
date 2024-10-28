@@ -3,8 +3,10 @@ import Nav from './Nav.astro'
 import Logo from './icons/Logo.astro'
 ---
 
-<footer class='bg-slate-200 text-blue-900 pt-10 pb-4 px-4 sm:px-8'>
-  <nav class='container mx-auto h-full space-y-4 md:space-y-8'>
+<footer
+  class='bg-slate-200 text-blue-900 pt-10 pb-4 px-4 sm:px-8 cp-rmv md:cp-rv min-h-[50vh]'
+>
+  <nav class='container mx-auto pt-10'>
     <ul
       class='h-full flex flex-col gap-4 md:gap-8 uppercase font-medium text-sm md:text-base items-center'
     >
@@ -22,7 +24,9 @@ import Logo from './icons/Logo.astro'
         <Nav />
       </li>
     </ul>
-    <p class='text-center font-medium'>
+    <p
+      class='text-center font-medium absolute bottom-4 mx-auto w-fit left-0 right-0'
+    >
       © ID Construcciones 2024 | <span class='text-slate-400 font-normal'
         >Desarrollado por <a
           class='hover:text-blue-900'

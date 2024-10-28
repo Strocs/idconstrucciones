@@ -1,0 +1,26 @@
+---
+import { Image } from 'astro:assets'
+import ServicesAcordeon from './ServicesAccordion.astro'
+import constru from '@/assets/constru.jpg'
+import Title from '@/components/Title.astro'
+import SITE from '@/data/SITE'
+---
+
+<section
+  id='servicios'
+  class='container mx-auto pt-32 pb-40 uppercase opacity-0 px-4 sm:px-6 lg:px-8'
+>
+  <header class='mb-8 w-fit mx-auto'>
+    <Title h='h2' class='font-bold'>{SITE.sections.services.title}</Title>
+  </header>
+  <div class='grid gap-8 md:grid-cols-2'>
+    <div class='aspect-video'>
+      <Image
+        class='w-full h-full object-cover rounded-lg'
+        src={constru}
+        alt='some building'
+      />
+    </div>
+    <ServicesAcordeon open={0} />
+  </div>
+</section>
