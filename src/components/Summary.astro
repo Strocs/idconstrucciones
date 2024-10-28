@@ -1,12 +1,63 @@
+---
+import SITE from '@/data/SITE'
+---
+
 <section
-  class="container mx-auto py-4 md:py-10 grid gap-4 md:grid-cols-2 md:gap-12 uppercase opacity-0"
+  id='mision-vision'
+  class='container mx-auto h-[464px] py-10 md:py-32 opacity-0 px-4 space-y-10'
 >
-  <p class="text-white">
-    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Alias, dolorum
-    quia. Laboriosam et quo illo?
-  </p>
-  <p class="neutral-100 opacity-50 text-sm md:text-base">
-    Con pasión y dedicación, te ayudamos a hacer realidad tu visión y a superar
-    cualquier desafío técnico o de ingeniería
-  </p>
+  <div class='mx-auto w-fit space-x-4'>
+    <button
+      id='mision-btn'
+      class='active px-4 py-1 text-2xl font-medium rounded-md hover:bg-blue-50/50 transition-all duration-150'
+    >
+      Misión
+    </button>
+    <button
+      id='vision-btn'
+      class='px-4 py-1 text-2xl font-medium rounded-md hover:bg-blue-50/50 transition-all duration-150'
+    >
+      Visión
+    </button>
+  </div>
+  <div class='max-w-prose mx-auto'>
+    <p
+      id='mision'
+      class='text-lg text-slate-300 transition-opacity duration-150'
+    >
+      {SITE.sections.summary.mision}
+    </p>
+    <p
+      id='vision'
+      class='text-lg text-slate-300 opacity-0 transition-opacity duration-150'
+      hidden
+    >
+      {SITE.sections.summary.vision}
+    </p>
+  </div>
 </section>
+
+<style>
+  .active {
+    @apply bg-blue-50 text-blue-900;
+  }
+</style>
+
+<script>
+  const misionBtn = document.querySelector('#mision-btn') as HTMLButtonElement
+  const visionBtn = document.querySelector('#vision-btn') as HTMLButtonElement
+  const mision = document.querySelector('#mision') as HTMLParagraphElement
+  const vision = document.querySelector('#vision') as HTMLParagraphElement
+
+  function toggleParagraphs() {
+    mision.hidden = !mision.hidden
+    vision.hidden = !vision.hidden
+    misionBtn.classList.toggle('active')
+    visionBtn.classList.toggle('active')
+    mision.classList.toggle('opacity-0')
+    vision.classList.toggle('opacity-100')
+  }
+
+  misionBtn.addEventListener('click', toggleParagraphs)
+  visionBtn.addEventListener('click', toggleParagraphs)
+</script>

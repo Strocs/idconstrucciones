@@ -1,16 +1,26 @@
 ---
 // import Facebook from './icons/Facebook.astro'
 // import Instagram from './icons/Instagram.astro'
+
+interface Props {
+  class?: string
+}
+
+const { class: customClass, ...props } = Astro.props
 ---
 
 <div
-  class="flex items-center text-center gap-x-8 justify-center flex-wrap uppercase font-medium"
+  {...props}
+  class:list={[
+    'flex items-center text-center gap-x-8 justify-center flex-wrap uppercase font-medium',
+    customClass,
+  ]}
 >
-  <a class="hover:underline" href="/">Inicio</a>
-  <!-- <a class="hover:underline" href="#proyectos">Proyectos</a> -->
-  <!-- <a class="hover:underline" href="#servicios">Nuestros Servicios</a> -->
-  <!-- <a class="hover:underline" href="#equipo">Nuestro Equipo</a> -->
-  <a class="hover:underline" href="#contacto">Contacto</a>
+  <a class='hover:underline' href='#inicio'>Inicio</a>
+  <a class='hover:underline' href='#mision-vision'>Misión/Visión</a>
+  <a class='hover:underline' href='#servicios'>Servicios</a>
+  <a class='hover:underline' href='#sello'>Nuestro Sello</a>
+  <a class='hover:underline' href='#contacto'>Contacto</a>
   <!-- <div class="flex gap-4 items-center"> -->
   <!--   <a href=""><Facebook size="24" /></a> -->
   <!--   <a href="" class=""><Instagram size="30" /></a> -->
