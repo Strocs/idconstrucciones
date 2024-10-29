@@ -14,10 +14,7 @@ export const POST: APIRoute = async ({ request }) => {
     `${name}`.match(/^[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+$/)
 
   const isValidEmail =
-    email &&
-    `${email}`.match(
-      /^[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+@[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+\.[a-zA-ZñÑáéíóúÁÉÍÓÚñÑ\s]+$/
-    )
+    email && `${email}`.match(/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g)
   const isValidPhone =
     phone && `${phone}`.match(/^(\+?56)?(\s?)(0?9)(\s?)[98765432]\d{7}$/)
 

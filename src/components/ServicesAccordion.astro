@@ -18,10 +18,16 @@ const services = SITE.sections.services.content
   {
     services.map((service, i) => (
       <Image
-        class:list={['absolute size-full object-cover', i !== open && 'hidden']}
+        class:list={[
+          'absolute size-full object-cover',
+          i !== open && 'hidden',
+          service.name.includes('Hidraulicas') && 'object-bottom',
+        ]}
         src={service.image!.src}
         alt={service.image!.alt}
         loading={i === open ? 'eager' : 'lazy'}
+        width={720}
+        format='webp'
       />
     ))
   }

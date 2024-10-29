@@ -103,8 +103,8 @@ export default {
     contact: {
       title: 'Estemos en contacto',
       subTitle:
-        'Estamos aquí para ayudarle con todas sus necesidades en construcción. Ya sea que estés planeando un nuevo proyecto o necesita asesoramiento de expertos, nuestro equipo está listo para ayudarle.',
-      whatsAppMessage: 'Contacta con nosotros por WhatsApp',
+        'Estamos aquí para ayudarle con todas sus necesidades en construcción. Ya sea que esté planeando un nuevo proyecto o necesite asesoramiento de expertos, nuestro equipo está listo para ayudarle.',
+      whatsAppMessage: 'Contacte con nosotros por WhatsApp',
     },
   },
   social_media: {
