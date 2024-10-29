@@ -1,21 +1,40 @@
 ---
 import Arrow from '@/components/icons/Arrow.astro'
 import SITE from '@/data/SITE'
+import { Image } from 'astro:assets'
 
 interface Props {
   open?: number
 }
 const { open } = Astro.props
+
+const services = SITE.sections.services.content
 ---
+
+<figure
+  id='service-images'
+  class='relative aspect-video overflow-hidden rounded-lg'
+>
+  {
+    services.map((service, i) => (
+      <Image
+        class:list={['absolute size-full object-cover', i !== open && 'hidden']}
+        src={service.image!.src}
+        alt={service.image!.alt}
+        loading={i === open ? 'eager' : 'lazy'}
+      />
+    ))
+  }
+</figure>
 
 <div class='w-full'>
   <ul id='acordeon' class='flex items-center flex-col gap-6'>
     {
-      SITE.sections.services.content.map((service, i) => (
+      services.map((service, i) => (
         <li class='border-slate-600 border-b-[1px]'>
           <header
             class='flex justify-between cursor-pointer [&>*]:pointer-events-none hover:text-blue-200 text-white transition duration-150'
-            data-status={`${i === open ? 'enabled' : 'disabled'}`}
+            data-index={i}
           >
             <h3 class='text-lg md:text-xl'>{service.name}</h3>
             <Arrow
@@ -32,14 +51,16 @@ const { open } = Astro.props
           >
             <div class='h-full overflow-hidden normal-case'>
               {typeof service.description === 'string' ? (
-                <p class='mb-4 pt-2 text-sm text-slate-300 md:text-base'>
-                  {service.description}
-                </p>
+                <p
+                  class='mb-4 pt-2 text-sm text-slate-300 md:text-base'
+                  set:html={service.description}
+                />
               ) : (
                 service.description.map((description) => (
-                  <p class='mb-4 pt-2 text-sm text-slate-300  md:text-base'>
-                    {description}
-                  </p>
+                  <p
+                    class='mb-4 pt-2 text-sm text-slate-300  md:text-base'
+                    set:html={description}
+                  />
                 ))
               )}
             </div>
@@ -51,7 +72,11 @@ const { open } = Astro.props
 </div>
 
 <script>
+  const imgs = document.querySelectorAll(
+    '#service-images img'
+  ) as NodeListOf<HTMLImageElement>
   const accordion = document.getElementById('acordeon') as HTMLElement
+
   const items = accordion.querySelectorAll(
     'li > header'
   ) as NodeListOf<HTMLElement>
@@ -64,27 +89,24 @@ const { open } = Astro.props
     const content = target.nextElementSibling as HTMLElement
     const arrow = target.querySelector('svg') as SVGElement
 
-    if (!arrow || !content) throw new ReferenceError()
+    if (!content || !arrow) return
 
-    switch (dataset.status) {
-      case 'disabled':
-        items.forEach((item) => {
-          const content = item.nextElementSibling as HTMLElement
-          content.style.gridTemplateRows = '0fr'
-          item.dataset.status = 'disabled'
-          item.querySelector('svg')?.classList.remove('rotate-90')
-        })
-        content.style.gridTemplateRows = '1fr'
-        target.dataset.status = 'enabled'
-        arrow.classList.add('rotate-90')
-        break
-      case 'enabled':
-        content.style.gridTemplateRows = '0fr'
-        target.dataset.status = 'disabled'
-        arrow.classList.remove('rotate-90')
-        break
-      default:
-        break
-    }
+    items.forEach((item, i) => {
+      if (i === Number(dataset.index)) return
+
+      if (!imgs[i].classList.contains('hidden')) {
+        imgs[i].classList.add('hidden')
+      }
+
+      const content = item.nextElementSibling as HTMLElement
+      content.style.gridTemplateRows = '0fr'
+      item.dataset.status = 'disabled'
+      item.querySelector('svg')?.classList.remove('rotate-90')
+    })
+
+    content.style.gridTemplateRows = '1fr'
+    target.dataset.status = 'enabled'
+    arrow.classList.add('rotate-90')
+    imgs[Number(dataset.index)].classList.remove('hidden')
   })
 </script>

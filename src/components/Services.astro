@@ -1,7 +1,5 @@
 ---
-import { Image } from 'astro:assets'
 import ServicesAcordeon from './ServicesAccordion.astro'
-import constru from '@/assets/constru.jpg'
 import Title from '@/components/Title.astro'
 import SITE from '@/data/SITE'
 ---
@@ -14,13 +12,6 @@ import SITE from '@/data/SITE'
     <Title h='h2' class='font-bold'>{SITE.sections.services.title}</Title>
   </header>
   <div class='grid gap-8 md:grid-cols-2'>
-    <div class='aspect-video'>
-      <Image
-        class='w-full h-full object-cover rounded-lg'
-        src={constru}
-        alt='some building'
-      />
-    </div>
     <ServicesAcordeon open={0} />
   </div>
 </section>

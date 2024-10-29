@@ -2,7 +2,7 @@
 import SITE from '@/data/SITE'
 import Title from './Title.astro'
 import { getImage } from 'astro:assets'
-import bgImage from '@/assets/obra-santo-tomas.jpg'
+import bgImage from '@/assets/obra-main.jpg'
 
 const { title, description } = SITE.sections.about
 
@@ -26,8 +26,15 @@ const optimizedBgImage = await getImage({
     <Title h='h2' class='font-bold text-center'>
       {title}
     </Title>
-    <p class='text-center text-lg md:text-xl max-w-prose mx-auto'>
-      {description}
-    </p>
+    {
+      description.map((p) => {
+        return (
+          <p
+            class='text-center text-lg md:text-xl max-w-prose mx-auto'
+            set:html={p}
+          />
+        )
+      })
+    }
   </section>
 </div>
