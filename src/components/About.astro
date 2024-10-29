@@ -2,7 +2,7 @@
 import SITE from '@/data/SITE'
 import Title from './Title.astro'
 import { getImage } from 'astro:assets'
-import bgImage from '@/assets/obra-main.jpg'
+import bgImage from '@/assets/sello.jpg'
 
 const { title, description } = SITE.sections.about
 
@@ -11,7 +11,7 @@ const optimizedBgImage = await getImage({
   width: 1920,
   height: 1080,
   format: 'webp',
-  quality: 80,
+  loading: 'lazy',
 })
 ---
 
