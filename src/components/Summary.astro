@@ -24,16 +24,14 @@ import SITE from '@/data/SITE'
     <p
       id='mision'
       class='text-lg text-slate-300 transition-opacity duration-150'
-    >
-      {SITE.sections.summary.mision}
-    </p>
+      set:html={SITE.sections.summary.mision}
+    />
     <p
       id='vision'
       class='text-lg text-slate-300 opacity-0 transition-opacity duration-150'
       hidden
-    >
-      {SITE.sections.summary.vision}
-    </p>
+      set:html={SITE.sections.summary.vision}
+    />
   </div>
 </section>
 
